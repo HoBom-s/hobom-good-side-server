@@ -1,4 +1,4 @@
-package hobom.backend.domain.common
+package hobom.backend.domain.model.common
 
 import jakarta.persistence.Column
 import jakarta.persistence.MappedSuperclass

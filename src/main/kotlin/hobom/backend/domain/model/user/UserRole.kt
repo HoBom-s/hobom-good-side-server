@@ -1,4 +1,4 @@
-package hobom.backend.domain.user
+package hobom.backend.domain.model.user
 
 enum class UserRole {
     ADMIN,

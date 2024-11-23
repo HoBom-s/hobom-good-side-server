@@ -1,8 +1,8 @@
-package hobom.backend.domain.user
+package hobom.backend.domain.model.user
 
-import hobom.backend.domain.common.BaseEntity
-import hobom.backend.domain.monthreview.MonthReview
-import hobom.backend.domain.seasonreveiw.SeasonReview
+import hobom.backend.domain.model.common.BaseEntity
+import hobom.backend.domain.model.monthreview.MonthReview
+import hobom.backend.domain.model.seasonreveiw.SeasonReview
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
