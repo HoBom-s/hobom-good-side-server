@@ -1,4 +1,4 @@
-package hobom.backend.domain.season
+package hobom.backend.domain.model.season
 
 enum class Quarter {
     FIRST,

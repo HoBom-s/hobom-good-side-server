@@ -1,8 +1,8 @@
-package hobom.backend.domain.monthreview
+package hobom.backend.domain.model.monthreview
 
-import hobom.backend.domain.category.Category
-import hobom.backend.domain.common.BaseEntity
-import hobom.backend.domain.user.User
+import hobom.backend.domain.model.category.Category
+import hobom.backend.domain.model.common.BaseEntity
+import hobom.backend.domain.model.user.User
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType

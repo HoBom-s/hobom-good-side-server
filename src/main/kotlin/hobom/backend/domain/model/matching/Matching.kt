@@ -1,8 +1,8 @@
-package hobom.backend.domain.matching
+package hobom.backend.domain.model.matching
 
-import hobom.backend.domain.common.BaseEntity
-import hobom.backend.domain.season.Season
-import hobom.backend.domain.user.User
+import hobom.backend.domain.model.common.BaseEntity
+import hobom.backend.domain.model.season.Season
+import hobom.backend.domain.model.user.User
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
