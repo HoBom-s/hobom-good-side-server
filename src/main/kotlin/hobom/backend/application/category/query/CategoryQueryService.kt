@@ -4,6 +4,8 @@ import hobom.backend.application.category.dto.CategoryResponse
 import hobom.backend.domain.model.category.Category
 
 interface CategoryQueryService {
+    fun findAll(): List<CategoryResponse>
+
     fun findCategoryById(id: Long): Category
 
     fun searchCategoryById(id: Long): CategoryResponse

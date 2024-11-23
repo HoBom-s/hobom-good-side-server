@@ -10,6 +10,14 @@ import org.springframework.stereotype.Service
 class DefaultCategoryQueryService(
     private val categoryRepository: CategoryRepository,
 ) : CategoryQueryService {
+    override fun findAll(): List<CategoryResponse> {
+        val categoryList = categoryRepository
+            .findAll()
+            .map { category -> CategoryResponse.from(category = category) }
+
+        return categoryList
+    }
+
     override fun searchCategoryById(id: Long): CategoryResponse {
         val categoryResponse = with(this) {
             val category = findCategoryById(id = id)
