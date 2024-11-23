@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class DefaultCategoryCommandService(
     private val categoryQueryService: CategoryQueryService,
-    private val categoryRepository: CategoryRepository
+    private val categoryRepository: CategoryRepository,
 ) : CategoryCommandService {
     @Transactional
     override fun createCategory(command: CategoryCommand) {
@@ -29,7 +29,7 @@ class DefaultCategoryCommandService(
         foundCategory.update(
             title = command.title,
             path = command.path,
-            sortIndex = command.sortIndex
+            sortIndex = command.sortIndex,
         )
     }
 
@@ -45,14 +45,14 @@ class DefaultCategoryCommandService(
         val foundCategory = findCategoryById(id = id)
 
         foundCategory.changeIndex(
-            sortIndex = command.sortIndex
+            sortIndex = command.sortIndex,
         )
     }
 
     private fun checkCategoryExistence(command: CategoryCommand) {
-        val alreadyExistCategory = categoryQueryService.searchCategoryByTitleAndPath(
+        val alreadyExistCategory = categoryQueryService.searchCategoryByTitleOrPath(
             title = command.title,
-            path = command.path
+            path = command.path,
         )
 
         if (alreadyExistCategory != null) {
@@ -68,7 +68,7 @@ class DefaultCategoryCommandService(
         return Category(
             title = this.title,
             path = this.path,
-            sortIndex = this.sortIndex
+            sortIndex = this.sortIndex,
         )
     }
 }

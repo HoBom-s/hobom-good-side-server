@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class DefaultCategoryQueryService(
     private val categoryRepository: CategoryRepository,
-): CategoryQueryService {
+) : CategoryQueryService {
     override fun searchCategoryById(id: Long): CategoryResponse {
         val categoryResponse = with(this) {
             val category = findCategoryById(id = id)
@@ -25,23 +25,23 @@ class DefaultCategoryQueryService(
             findCategoryByTitle(title = title)
         }
 
-        if(category == null) {
+        if (category == null) {
             return null
         }
 
-        return CategoryResponse.from(category =  category)
+        return CategoryResponse.from(category = category)
     }
 
-    override fun searchCategoryByTitleAndPath(title: String, path: String): CategoryResponse? {
+    override fun searchCategoryByTitleOrPath(title: String, path: String): CategoryResponse? {
         val category = with(this) {
-            findCategoryByPathAndTitle(title = title, path = path)
+            findCategoryByPathOrTitle(title = title, path = path)
         }
 
-        if(category == null) {
+        if (category == null) {
             return null
         }
 
-        return CategoryResponse.from(category =  category)
+        return CategoryResponse.from(category = category)
     }
 
     override fun findCategoryById(id: Long): Category {
@@ -53,7 +53,7 @@ class DefaultCategoryQueryService(
         return categoryRepository.findByTitle(title = title)
     }
 
-    private fun findCategoryByPathAndTitle(title: String, path: String): Category? {
-        return categoryRepository.findByTitleAndPath(title = title, path = path)
+    private fun findCategoryByPathOrTitle(title: String, path: String): Category? {
+        return categoryRepository.findByTitleOrPath(title = title, path = path)
     }
 }

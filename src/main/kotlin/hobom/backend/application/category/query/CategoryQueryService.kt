@@ -10,5 +10,5 @@ interface CategoryQueryService {
 
     fun searchCategoryByTitle(title: String): CategoryResponse?
 
-    fun searchCategoryByTitleAndPath(title: String, path: String): CategoryResponse?
+    fun searchCategoryByTitleOrPath(title: String, path: String): CategoryResponse?
 }

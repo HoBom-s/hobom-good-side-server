@@ -2,7 +2,6 @@ package hobom.backend.domain.model.season
 
 import hobom.backend.domain.model.common.BaseEntity
 import hobom.backend.domain.model.matching.Matching
-import hobom.backend.domain.model.season.Quarter
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

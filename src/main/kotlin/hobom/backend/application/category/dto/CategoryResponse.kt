@@ -9,7 +9,7 @@ data class CategoryResponse(
     val path: String,
     val sortIndex: Int,
     val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime
+    val updatedAt: LocalDateTime,
 ) {
     companion object {
         fun from(category: Category): CategoryResponse {
@@ -19,7 +19,7 @@ data class CategoryResponse(
                 path = category.path,
                 sortIndex = category.sortIndex,
                 createdAt = category.createdAt,
-                updatedAt = category.updatedAt
+                updatedAt = category.updatedAt,
             )
         }
     }

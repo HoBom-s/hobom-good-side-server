@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("$InternalPrefix/category")
 @Tag(name = "Category Internal", description = "Internal category controller")
-class CategoryCommandController (
-    private val categoryCommandService: CategoryCommandService
+class CategoryCommandController(
+    private val categoryCommandService: CategoryCommandService,
 ) {
     @PostMapping
     @Operation(summary = "카테고리 생성")
     fun createCategory(
-        @RequestBody command: CategoryCommand
+        @RequestBody command: CategoryCommand,
     ): ResponseEntity<Unit> {
         categoryCommandService.createCategory(
-            command = command
+            command = command,
         )
 
         return ResponseEntity.noContent().build()
@@ -38,11 +38,11 @@ class CategoryCommandController (
     @Operation(summary = "카테고리 수정")
     fun updateCategory(
         @PathVariable("id") id: Long,
-        @RequestBody command: CategoryUpdateCommand
+        @RequestBody command: CategoryUpdateCommand,
     ): ResponseEntity<Unit> {
         categoryCommandService.updateCategory(
             id = id,
-            command = command
+            command = command,
         )
 
         return ResponseEntity.noContent().build()
@@ -52,11 +52,11 @@ class CategoryCommandController (
     @Operation(summary = "카테고리 정렬 순서 변경")
     fun changeSortIndex(
         @PathVariable("id") id: Long,
-        @RequestBody command: CategoryChangeIndexCommand
+        @RequestBody command: CategoryChangeIndexCommand,
     ): ResponseEntity<Unit> {
         categoryCommandService.changeSortIndex(
             id = id,
-            command = command
+            command = command,
         )
 
         return ResponseEntity.noContent().build()
@@ -65,10 +65,10 @@ class CategoryCommandController (
     @DeleteMapping("/{id}")
     @Operation(summary = "카테고리 삭제")
     fun deleteCategory(
-        @PathVariable("id") id: Long
+        @PathVariable("id") id: Long,
     ): ResponseEntity<Unit> {
         categoryCommandService.deleteCategory(
-            id = id
+            id = id,
         )
 
         return ResponseEntity.noContent().build()
