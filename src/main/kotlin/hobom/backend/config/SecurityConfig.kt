@@ -13,11 +13,11 @@ import org.springframework.security.crypto.password.PasswordEncoder
 @EnableWebSecurity
 class SecurityConfig {
     @Autowired
-
     @Bean
     fun filterChain(http: HttpSecurity) = http
-        .sessionManagement { config -> config.sessionCreationPolicy(
-                SessionCreationPolicy.STATELESS
+        .sessionManagement { config ->
+            config.sessionCreationPolicy(
+                SessionCreationPolicy.STATELESS,
             )
         }
         .httpBasic { config -> config.disable() }

@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration
 class SwaggerConfig {
     @Bean
     fun openAPI(): OpenAPI = OpenAPI()
-            .components(Components())
-            .info(configurationInfo())
+        .components(Components())
+        .info(configurationInfo())
 
     private fun configurationInfo(): Info = Info()
-            .title("HoBom Tech Blog Kotlin + Spring Boot")
-            .description("API DOCS")
-            .version("1.0.0")
+        .title("HoBom Tech Blog Kotlin + Spring Boot")
+        .description("API DOCS")
+        .version("1.0.0")
 }
