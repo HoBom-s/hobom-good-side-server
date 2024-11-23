@@ -1,11 +1,15 @@
 package hobom.backend.domain.model.category
 
 import hobom.backend.domain.model.common.BaseEntity
+import hobom.backend.domain.model.monthreview.MonthReview
+import hobom.backend.domain.model.seasonreveiw.SeasonReview
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -23,6 +27,20 @@ data class Category(
 
     @Column(nullable = false)
     var sortIndex: Int,
+
+    @OneToMany(
+        mappedBy = "category",
+        cascade = [CascadeType.ALL],
+        orphanRemoval = true,
+    )
+    val seasonReviews: MutableList<SeasonReview>? = mutableListOf(),
+
+    @OneToMany(
+        mappedBy = "category",
+        cascade = [CascadeType.ALL],
+        orphanRemoval = true,
+    )
+    val monthReviews: MutableList<MonthReview>? = mutableListOf(),
 ) : BaseEntity() {
     fun update(title: String?, path: String?, sortIndex: Int?) {
         title?.let { this.title = it }
@@ -31,6 +49,10 @@ data class Category(
     }
 
     fun changeIndex(sortIndex: Int) {
+        if (this.sortIndex == sortIndex) {
+            return
+        }
+
         this.sortIndex = sortIndex
     }
 }

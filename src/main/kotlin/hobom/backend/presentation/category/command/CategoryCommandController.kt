@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("$InternalPrefix/category")
-@Tag(name = "Category Internal", description = "Internal category controller")
+@Tag(
+    name = "Category Internal",
+    description = "Internal category controller",
+)
 class CategoryCommandController(
     private val categoryCommandService: CategoryCommandService,
 ) {

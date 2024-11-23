@@ -37,6 +37,10 @@ data class Season(
     @Column(nullable = false)
     val endDate: LocalDate,
 
-    @OneToMany(mappedBy = "season", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(
+        mappedBy = "season",
+        cascade = [CascadeType.ALL],
+        orphanRemoval = true,
+    )
     val matchings: MutableList<Matching> = mutableListOf(),
 ) : BaseEntity()
