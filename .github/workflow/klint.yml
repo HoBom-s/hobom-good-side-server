@@ -1,0 +1,19 @@
+name: kotlin-lint
+
+on: [pull_request]
+
+jobs:
+  ktlint:
+    name: Check Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: ktlint
+        uses: ScaCap/action-ktlint@master
+        with:
+          github_token: $
+          reporter: github-pr-review
+          fail_on_error: true
+          level: warning
