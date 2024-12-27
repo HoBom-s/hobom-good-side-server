@@ -7,7 +7,6 @@ import hobom.backend.domain.model.user.User
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
-import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
@@ -96,11 +95,5 @@ class JwtTokenProvider {
             .build()
             .parseSignedClaims(token)
             .payload
-    }
-
-    private fun extractAuthorities(claims: Claims): List<SimpleGrantedAuthority> {
-        val roles = claims["roles"] as? List<String> ?: return emptyList()
-
-        return roles.map { role -> SimpleGrantedAuthority(role) }
     }
 }
