@@ -18,7 +18,7 @@ class CreateUserHandler(
         try {
             userRepository.save(command.toEntity())
         } catch (e: Exception) {
-            throw UserCreationException("사용자를 생성하는 도중 오류가 발생했어요.", e)
+            throw UserCreationException("사용자를 생성하는 도중 오류가 발생했어요.")
         }
 
         return Empty()
