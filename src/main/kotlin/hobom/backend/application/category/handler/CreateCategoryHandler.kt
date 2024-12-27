@@ -18,7 +18,7 @@ class CreateCategoryHandler(
         try {
             categoryRepository.save(command.toEntity())
         } catch (e: Exception) {
-            throw CategoryCreationException("카테고리를 생성하지 못했어요.", e)
+            throw CategoryCreationException("카테고리를 생성하지 못했어요.")
         }
 
         return Empty()

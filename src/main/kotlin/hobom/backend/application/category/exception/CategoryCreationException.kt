@@ -1,3 +1,6 @@
 package hobom.backend.application.category.exception
 
-class CategoryCreationException(message: String, e: Exception) : RuntimeException(message, e)
+import hobom.backend.global.BaseException
+import org.springframework.http.HttpStatus
+
+class CategoryCreationException(message: String) : BaseException(HttpStatus.INTERNAL_SERVER_ERROR, message)

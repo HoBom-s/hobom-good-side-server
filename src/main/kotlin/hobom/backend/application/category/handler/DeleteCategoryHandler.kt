@@ -17,7 +17,7 @@ class DeleteCategoryHandler(
         try {
             categoryRepository.deleteById(command.id)
         } catch (e: Exception) {
-            throw CategoryDeleteException("카테고리 삭제 도중 오류가 발생했어요.", e)
+            throw CategoryDeleteException("카테고리 삭제 도중 오류가 발생했어요.")
         }
 
         return Empty()
