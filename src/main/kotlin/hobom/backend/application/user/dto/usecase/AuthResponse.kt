@@ -1,4 +1,4 @@
-package hobom.backend.application.user.dto
+package hobom.backend.application.user.dto.usecase
 
 data class AuthResponse(
     val accessToken: String,

@@ -1,9 +1,8 @@
 package hobom.backend.presentation.auth.command
 
-import hobom.backend.application.user.command.AuthUserUseCase
-import hobom.backend.application.user.dto.AuthResponse
-import hobom.backend.application.user.dto.UserCommand
-import hobom.backend.application.user.dto.UserLoginCommand
+import hobom.backend.application.user.dto.usecase.AuthResponse
+import hobom.backend.application.user.dto.usecase.Request
+import hobom.backend.application.user.services.AuthUserService
 import hobom.backend.presentation.ExternalPrefix
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -20,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController
     description = "External Auth controller",
 )
 class AuthCommandController(
-    private val authUserUseCase: AuthUserUseCase,
+    private val authUserService: AuthUserService,
 ) {
     @PostMapping("/users")
     @Operation(summary = "사용자 회원가입")
     fun createUser(
-        @RequestBody command: UserCommand,
+        @RequestBody command: Request.CreateUserRequest,
     ): ResponseEntity<Unit> {
-        authUserUseCase.createUser(command = command)
+        authUserService.createUser(command)
 
         return ResponseEntity.noContent().build()
     }
@@ -35,9 +34,9 @@ class AuthCommandController(
     @PostMapping("/login")
     @Operation(summary = "사용자 로그인")
     fun loginUser(
-        @RequestBody command: UserLoginCommand,
+        @RequestBody command: Request.LoginUser,
     ): ResponseEntity<AuthResponse> {
-        val userResponse = authUserUseCase.loginUser(command = command)
+        val userResponse = authUserService.loginUser(command)
 
         return ResponseEntity.ok(userResponse)
     }
