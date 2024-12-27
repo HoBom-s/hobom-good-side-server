@@ -47,12 +47,4 @@ data class Category(
         path?.let { this.path = it }
         sortIndex?.let { this.sortIndex = it }
     }
-
-    fun changeIndex(sortIndex: Int) {
-        if (this.sortIndex == sortIndex) {
-            return
-        }
-
-        this.sortIndex = sortIndex
-    }
 }

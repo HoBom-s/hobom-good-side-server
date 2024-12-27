@@ -1,5 +1,6 @@
 package hobom.backend.application.category.services
 
+import hobom.backend.application.category.dto.command.UpdateCategory
 import hobom.backend.application.category.dto.usecase.Request
 import hobom.backend.application.category.dto.usecase.Response
 import hobom.backend.application.category.exception.CategoryNotFoundException
@@ -18,6 +19,8 @@ class ProductCategoryService(
     private val getCategoryDetailByTitleOrPathUseCase: UseCase<Request.GetCategoryDetailByTitleOrPath, Response.GetCategoryDetail?>,
     @Qualifier("createCategoryUseCase")
     private val createCategoryUseCase: UseCase<Request.CreateCategory, Response.Empty>,
+    @Qualifier("updateCategoryUseCase")
+    private val updateCategoryUseCase: UseCase<Request.UpdateCategory, Response.Empty>,
     @Qualifier("deleteCategoryUseCase")
     private val deleteCategoryUseCase: UseCase<Request.DeleteCategory, Response.Empty>,
 ) {
@@ -30,7 +33,7 @@ class ProductCategoryService(
             ?: throw CategoryNotFoundException("카테고리를 찾을 수 없어요.")
     }
 
-    fun createCategoryUseCase(request: Request.CreateCategory) {
+    fun createCategory(request: Request.CreateCategory) {
         val alreadyExist = getCategoryDetailByTitleOrPathUseCase.execute(
             Request.GetCategoryDetailByTitleOrPath(request.title, request.path),
         )
@@ -39,7 +42,12 @@ class ProductCategoryService(
         createCategoryUseCase.execute(request)
     }
 
-    fun deleteCategoryUseCase(id: Long) {
+    fun updateCategoryUseCase(request: Request.UpdateCategory) {
+        findCategoryById(request.id)
+        updateCategoryUseCase.execute(request)
+    }
+
+    fun deleteCategory(id: Long) {
         val category = findCategoryById(id)
 
         deleteCategoryUseCase.execute(Request.DeleteCategory(category.id))
