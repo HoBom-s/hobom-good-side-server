@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -27,7 +28,17 @@ class CategoryCommandController(
     fun createCategory(
         @RequestBody command: Request.CreateCategory,
     ): ResponseEntity<Unit> {
-        productCategoryService.createCategoryUseCase(command)
+        productCategoryService.createCategory(command)
+
+        return ResponseEntity.noContent().build()
+    }
+
+    @PatchMapping
+    @Operation(summary = "카테고리 수정")
+    fun updateCategory(
+        @RequestBody command: Request.UpdateCategory,
+    ): ResponseEntity<Unit> {
+        productCategoryService.updateCategoryUseCase(command)
 
         return ResponseEntity.noContent().build()
     }
@@ -37,7 +48,7 @@ class CategoryCommandController(
     fun deleteCategory(
         @PathVariable("id") id: Long,
     ): ResponseEntity<Unit> {
-        productCategoryService.deleteCategoryUseCase(id)
+        productCategoryService.deleteCategory(id)
 
         return ResponseEntity.noContent().build()
     }
